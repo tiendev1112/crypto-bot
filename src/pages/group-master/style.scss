@@ -1,0 +1,77 @@
+.body__box {
+  padding: 20px;
+  height: 100%;
+  .title {
+    text-transform: uppercase;
+    font-size: 15px;
+    padding: 5px 0;
+  }
+  .list-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .form-search {
+    .checkbox__wrapper {
+      margin-left: 0;
+      > span {
+        padding: 0;
+        margin-right: 5px;
+      }
+      .MuiFormControlLabel-label {
+        font-size: 14px;
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+  .form-table {
+  }
+  .pagination_box {
+  }
+}
+
+.form-create {
+  h4 {
+    margin-top: 10px;
+  }
+  form,
+  .form {
+    padding: 10px;
+    padding-right: 0;
+    .content {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .error {
+        font-size: 14px;
+        color: red;
+        margin: -12px;
+        margin-left: 50%;
+      }
+      &.lable-not-center {
+        .MuiFormControl-root {
+          align-items: flex-start;
+          textarea {
+            flex: 2;
+          }
+        }
+      }
+      &.expired-date {
+        .show-text {
+          > span {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+    .button {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+  }
+}

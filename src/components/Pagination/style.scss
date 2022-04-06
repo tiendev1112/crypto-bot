@@ -1,0 +1,10 @@
+.bo-pagination.display-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 50px;
+	width: 100%;
+	.MuiInputBase-input.MuiOutlinedInput-input {
+		padding: 15px;
+	}
+}

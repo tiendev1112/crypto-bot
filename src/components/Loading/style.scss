@@ -1,0 +1,24 @@
+.bo-loading {
+	width: 100%;
+	height: calc(100vh - 150px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bo-loading-inner {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bo-loading-wrapper {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}

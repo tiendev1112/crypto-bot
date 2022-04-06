@@ -1,0 +1,18 @@
+
+.switch-box {
+  .MuiSwitch-colorPrimary.Mui-checked {
+    color: #fff;
+  }
+  .MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+    background-color: #409eff;
+    opacity: 1;
+  }
+  &.label{
+    display: flex;
+    align-items: center;
+    >label {
+      width: 50%;
+      font-size: 14px;
+    }
+  }
+}
