@@ -1,13 +1,12 @@
 import { Box, Button, Typography } from "@material-ui/core";
-import LockIcon from "@material-ui/icons/Lock";
-import PersonIcon from "@material-ui/icons/Person";
-import { Form, Formik } from "formik";
 import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { InputField } from "../../components";
+import { AppTextField } from "../../components";
+import FormLogin from "../../components/FormLogin";
 import { KEY_TOKEN_SIGNIN } from "../../constants";
-import { IApplicationState, postLogin, showMessage, SigninInput } from "../../store";
+import { IApplicationState, showMessage, SigninInput } from "../../store";
 import "./style.scss";
 
 export const Signin = () => {
@@ -15,66 +14,72 @@ export const Signin = () => {
   const dispatch = useDispatch();
   const signin = useSelector((state: IApplicationState) => state.signin);
   const initialValues: SigninInput = { username: "", password: "" };
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<SigninInput>({
+    defaultValues: initialValues,
+  });
   useEffect(() => {
     if (localStorage.getItem(KEY_TOKEN_SIGNIN)) {
       history.push("/user/group-master");
       dispatch(showMessage("Signed in successfully", "success"));
     }
   }, [dispatch, history, signin]);
-  const handleSubmit = async (
-    values: any,
-  ) => {
-    dispatch(postLogin(values));
+  const onSubmit = async (values: SigninInput) => {
+    console.log("values", values);
+
+    // dispatch(postLogin(values));
   };
   return (
-    <Box className="signin__container">
-      <Box className="box-top">
-        <Typography variant="h4" className="signin__title">
-          Crypto Bot
-        </Typography>
-        <Box>
-          <Button>
-            Đăng nhập
-          </Button>
-          <Button>
-            Đăng ký
-          </Button>
-        </Box>
+    <FormLogin>
+      <Box className="box_content">
+        <h2>Đăng nhập vào tài khoản của bạn</h2>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Box className="content">
+            <AppTextField
+              variant="outlined"
+              required
+              fullWidth
+              control={control}
+              error={"username" in errors}
+              helperText={errors.username && errors.username.message}
+              autoComplete="name"
+              rules={{
+                required: true,
+              }}
+              label={"Email"}
+              name="username"
+              id="username"
+            />
+            <AppTextField
+              variant="outlined"
+              required
+              fullWidth
+              control={control}
+              error={"password" in errors}
+              helperText={errors.password && errors.password.message}
+              autoComplete="password"
+              rules={{
+                required: true,
+              }}
+              label={"Mật khẩu"}
+              name="password"
+              type="password"
+              id="password"
+            />
+            <div className="list-btn">
+              <p>
+                <Link to={"/forgot-password"}>Quên mật khẩu?</Link>
+              </p>
+              <Button type="submit" color="secondary" className="button">
+                Tiếp tục
+              </Button>
+            </div>
+          </Box>
+        </form>
       </Box>
-      <Box className="wrapper_content">
-        <Box className="box_content">
-          <h2>Đăng nhập vào tài khoản của bạn</h2>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            {({ isSubmitting }) => (
-              <Form>
-                <Box className="content">
-                  <InputField
-                    placeholder="Username"
-                    name="username"
-                    icon={<PersonIcon />}
-                    required
-                  />
-                  <InputField
-                    placeholder="Password"
-                    name="password"
-                    icon={<LockIcon />}
-                    type="password"
-                    required
-                  />
-                  <div className="list-btn">
-                    <p>
-                      <Link to={"/forgot-password"}>Quên mật khẩu?</Link>
-                    </p>
-                    <Button type="submit" color="secondary" className="button">
-                      Tiếp tục
-                    </Button>
-                  </div>
-                </Box>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-      </Box>
-    </Box>
+    </FormLogin>
   );
 };

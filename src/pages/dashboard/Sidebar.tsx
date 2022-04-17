@@ -1,13 +1,13 @@
 import { Button } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ConfirmModal } from "../../components";
 import {
   KEY_TOKEN_SIGNIN,
-  TIME_SESSION_LOGOUT,
+  // TIME_SESSION_LOGOUT,
   USER_TYPE,
 } from "../../constants";
-import IdleTimer from "../../helpers/IdleTimer";
+// import IdleTimer from "../../helpers/IdleTimer";
 import { MenuParentItem } from "./MenuParentItem";
 import { MenuSingleItem } from "./MenuSingleItem";
 import dataPackage from "../../../package.json";
@@ -20,24 +20,24 @@ export const Sidebar = () => {
   const {
     currentUser: { data: dataUser },
   } = useSelector((state: IApplicationState) => state);
-  useEffect(() => {
-    const timer = new IdleTimer({
-      timeout: TIME_SESSION_LOGOUT * 60, //time expire
-      onTimeout: () => {
-        localStorage.removeItem(KEY_TOKEN_SIGNIN);
-        localStorage.removeItem("_expiredTime");
-        localStorage.removeItem("role");
-        history.push("/signin");
-      },
-      onExpired: () => {
-        //do something if expired on load
-        console.log("expired");
-      },
-    });
-    return () => {
-      timer.cleanUp();
-    };
-  }, [history]);
+  // useEffect(() => {
+  //   const timer = new IdleTimer({
+  //     timeout: TIME_SESSION_LOGOUT * 60, //time expire
+  //     onTimeout: () => {
+  //       localStorage.removeItem(KEY_TOKEN_SIGNIN);
+  //       localStorage.removeItem("_expiredTime");
+  //       localStorage.removeItem("role");
+  //       history.push("/signin");
+  //     },
+  //     onExpired: () => {
+  //       //do something if expired on load
+  //       console.log("expired");
+  //     },
+  //   });
+  //   return () => {
+  //     timer.cleanUp();
+  //   };
+  // }, [history]);
   const handleLogout = () => {
     history.push("/signin");
     localStorage.removeItem(KEY_TOKEN_SIGNIN);

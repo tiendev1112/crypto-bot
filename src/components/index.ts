@@ -16,3 +16,5 @@ export * from './Loading';
 export * from './ShowText';
 export * from './InputCheckbox';
 export * from './ImageUpload';
+export * from './FormControls';
+export * from './FormLogin';

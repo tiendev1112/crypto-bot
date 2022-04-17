@@ -17,7 +17,7 @@ import { ChangePassword } from "./pages/change-password";
 const globalTheme = createTheme({
   palette: {
     primary: {
-      main: "#3f6ad8",
+      main: "#000",
     },
     secondary: {
       main: "#f7b924",
